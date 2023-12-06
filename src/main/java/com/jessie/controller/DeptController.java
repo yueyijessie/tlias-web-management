@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.event.WindowFocusListener;
 import java.util.List;
 
 @Slf4j // 引入Logger方便打印日志
@@ -54,5 +55,12 @@ public class DeptController {
         log.info("根据id查询dept,{}", id);
         Dept dept = deptService.getDeptById(id);
         return Result.success(dept);
+    }
+
+    @PutMapping
+    public Result updateDept(@RequestBody Dept dept){
+        log.info("修改部门,{},{}", dept.getId(), dept.getName());
+        deptService.updateDept(dept);
+        return Result.success();
     }
 }

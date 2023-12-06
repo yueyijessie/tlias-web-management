@@ -52,4 +52,13 @@ public class DeptServiceImpl implements DeptService {
         Dept dept = deptMapper.getDeptById(id);
         return dept;
     }
+
+    /**
+     * 修改部门
+     * @param dept
+     */
+    public void updateDept(Dept dept){
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.UpdateDept(dept);
+    }
 }

@@ -30,4 +30,10 @@ public interface DeptService {
      * @return
      */
     Dept getDeptById(Integer id);
+
+    /**
+     * 修改部门
+     * @param dept
+     */
+    void updateDept(Dept dept);
 }
