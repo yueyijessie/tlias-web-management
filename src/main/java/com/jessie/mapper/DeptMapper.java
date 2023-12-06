@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface DeptMapper {
 
-    @Select("select id, name, createTime, updateTime from dept")
+    @Select("select id, name, create_time, update_time from dept")
     List<Dept> getDepts();
 }
