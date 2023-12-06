@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -50,5 +51,23 @@ public class EmpServiceImpl implements EmpService {
         // 封装pagebean对象
         PageBean pageBean = new PageBean(p.getTotal(), p.getResult());
         return pageBean;
+    }
+
+    /**
+     * 删除多个或单个员工
+     * @param ids
+     */
+    public void deleteEmps(List<Integer> ids){
+        empMapper.delete(ids);
+    }
+
+    /**
+     * 添加员工
+     * @param emp
+     */
+    public void insertEmp(Emp emp){
+        emp.setCreateTime(LocalDateTime.now());
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.insert(emp);
     }
 }

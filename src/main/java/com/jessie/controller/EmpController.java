@@ -27,4 +27,18 @@ public class EmpController {
         PageBean pageBean = empService.getEmps(page, pageSize, name, gender, begin, end);
         return Result.success(pageBean);
     }
+
+
+    @DeleteMapping("/{ids}")
+    public Result deleteEmps(@PathVariable List<Integer> ids){
+        empService.deleteEmps(ids);
+        return Result.success();
+    }
+
+    @PostMapping
+    public Result insertEmp(@RequestBody Emp emp){
+        empService.insertEmp(emp);
+        return Result.success();
+    }
+
 }

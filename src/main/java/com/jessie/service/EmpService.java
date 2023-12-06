@@ -1,8 +1,10 @@
 package com.jessie.service;
 
+import com.jessie.pojo.Emp;
 import com.jessie.pojo.PageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface EmpService {
     /**
@@ -17,4 +19,16 @@ public interface EmpService {
      * @return
      */
     PageBean getEmps(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+
+    /**
+     * 删除多个或单个员工
+     * @param ids
+     */
+    void deleteEmps(List<Integer> ids);
+
+    /**
+     * 添加员工
+     * @param emp
+     */
+    void insertEmp(Emp emp);
 }
