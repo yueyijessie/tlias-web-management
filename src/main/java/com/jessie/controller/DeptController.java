@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j // 引入Logger方便打印日志
 @RestController
+@RequestMapping("/depts")
 public class DeptController {
 
     @Autowired
@@ -27,21 +28,21 @@ public class DeptController {
      * @return
      */
     // @RequestMapping(value = "/depts", method = RequestMethod.GET)
-    @GetMapping("/depts")
+    @GetMapping
     public Result getDepts(){
         log.info("查询部门数据");
         List<Dept> deptList = deptService.getDepts();
         return Result.success(deptList);
     }
 
-    @DeleteMapping("/depts/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteDeptByID(@PathVariable Integer id){
         log.info("删除数据,{}", id);
         deptService.deleteDeptByID(id);
         return Result.success();
     }
 
-    @PostMapping("/depts")
+    @PostMapping
     public Result insertDept(@RequestBody Dept dept){
         log.info("新增部门, {}", dept);
         deptService.insertDept(dept);
