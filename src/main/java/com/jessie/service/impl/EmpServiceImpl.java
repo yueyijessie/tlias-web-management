@@ -9,6 +9,7 @@ import com.jessie.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -19,11 +20,16 @@ public class EmpServiceImpl implements EmpService {
 
     /**
      * 分页查询
+     *
      * @param page
      * @param pageSize
+     * @param name
+     * @param gender
+     * @param begin
+     * @param end
      * @return
      */
-    public PageBean getEmps(Integer page, Integer pageSize){
+    public PageBean getEmps(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end){
         // 传统方法
         // Long total = empMapper.getTotal();
         // List<Emp> emplist = empMapper.getEmps((page-1)*pageSize, pageSize);
@@ -38,7 +44,7 @@ public class EmpServiceImpl implements EmpService {
         PageHelper.startPage(page,pageSize);
 
         // 执行查询
-        List<Emp> empList = empMapper.getEmps();
+        List<Emp> empList = empMapper.getEmps(name, gender, begin, end);
         Page<Emp> p = (Page<Emp>) empList;
 
         // 封装pagebean对象
