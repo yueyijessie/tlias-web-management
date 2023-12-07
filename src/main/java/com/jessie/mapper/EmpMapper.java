@@ -19,6 +19,11 @@ public interface EmpMapper {
             "values (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})")
     void insert(Emp emp);
 
+    @Select("select * from emp where id = #{id}")
+    Emp getEmpById(Integer id);
+
+    void updateEmp(Emp emp);
+
 //    @Select("select count(*) from emp")
 //    Long getTotal();
 //

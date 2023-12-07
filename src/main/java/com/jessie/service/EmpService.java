@@ -31,4 +31,17 @@ public interface EmpService {
      * @param emp
      */
     void insertEmp(Emp emp);
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    Emp getEmpById(Integer id);
+
+    /**
+     * 修改员工
+     * @param emp
+     */
+    void updateEmp(Emp emp);
 }

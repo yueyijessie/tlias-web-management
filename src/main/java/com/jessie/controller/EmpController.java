@@ -4,6 +4,7 @@ import com.jessie.pojo.Emp;
 import com.jessie.pojo.PageBean;
 import com.jessie.pojo.Result;
 import com.jessie.service.EmpService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/emps")
 public class EmpController {
@@ -40,5 +42,21 @@ public class EmpController {
         empService.insertEmp(emp);
         return Result.success();
     }
+
+    @GetMapping("/{id}")
+    public Result getEmpById(@PathVariable Integer id){
+        Emp emp = empService.getEmpById(id);
+        return Result.success(emp);
+    }
+
+    @PutMapping
+    public Result updateEmp(@RequestBody Emp emp){
+        log.info("修改员工,{}", emp);
+        empService.updateEmp(emp);
+        return Result.success();
+    }
+
+
+
 
 }

@@ -70,4 +70,25 @@ public class EmpServiceImpl implements EmpService {
         emp.setUpdateTime(LocalDateTime.now());
         empMapper.insert(emp);
     }
+
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    public Emp getEmpById(Integer id){
+        Emp emp = empMapper.getEmpById(id);
+        return emp;
+    }
+
+
+    /**
+     * 修改员工
+     * @param emp
+     */
+    public void updateEmp(Emp emp){
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateEmp(emp);
+    }
 }
