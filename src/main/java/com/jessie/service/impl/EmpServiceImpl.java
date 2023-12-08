@@ -78,8 +78,7 @@ public class EmpServiceImpl implements EmpService {
      * @return
      */
     public Emp getEmpById(Integer id){
-        Emp emp = empMapper.getEmpById(id);
-        return emp;
+        return empMapper.getEmpById(id);
     }
 
 
@@ -90,5 +89,14 @@ public class EmpServiceImpl implements EmpService {
     public void updateEmp(Emp emp){
         emp.setUpdateTime(LocalDateTime.now());
         empMapper.updateEmp(emp);
+    }
+
+    /**
+     * 员工登录
+     * @param emp
+     * @return
+     */
+    public Emp login(Emp emp){
+        return empMapper.getByUsernameAndPassword(emp);
     }
 }

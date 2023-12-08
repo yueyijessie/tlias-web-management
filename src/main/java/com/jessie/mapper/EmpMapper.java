@@ -24,6 +24,9 @@ public interface EmpMapper {
 
     void updateEmp(Emp emp);
 
+    @Select("select * from emp where username = #{username} and password = #{password}")
+    Emp getByUsernameAndPassword(Emp emp);
+
 //    @Select("select count(*) from emp")
 //    Long getTotal();
 //
