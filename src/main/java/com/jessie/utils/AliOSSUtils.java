@@ -8,6 +8,7 @@ import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
@@ -20,8 +21,11 @@ import java.util.UUID;
 @Component
 public class AliOSSUtils {
 
-    private String endpoint = "https://oss-cn-beijing.aliyuncs.com";
-    private String bucketName = "web-tlias-jessie";
+    @Value("${aliyun.oss.endpoint}")
+    private String endpoint;
+
+    @Value("${aliyun.oss.bucketName}")
+    private String bucketName;
 
     /**
      * 实现上传图片到OSS
