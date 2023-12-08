@@ -46,7 +46,6 @@ public class DeptServiceImpl implements DeptService {
     public void deleteDeptByID(Integer id){
         try {
             deptMapper.deleteDeptByID(id); // 删除部门
-            int i = 1/0;
             empMapper.deleteByDeptId(id); // 删除部门下的员工
         } finally {
             // 无论删除成功与否，都要记录操作日志
