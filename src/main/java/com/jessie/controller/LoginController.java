@@ -32,7 +32,7 @@ public class LoginController {
             claims.put("name", e.getName());
             claims.put("username", e.getUsername());
 
-            String jwt = JwtUtils.generateJwt(claims); // jwt包含当前登录的与昂工信息
+            String jwt = JwtUtils.generateJwt(claims); // jwt包含当前登录的员工信息
             return Result.success(jwt);
         } else {
             // 登录失败，返回错误信息
