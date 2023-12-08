@@ -3,7 +3,9 @@ package com.jessie.service.impl;
 import com.jessie.mapper.DeptMapper;
 import com.jessie.mapper.EmpMapper;
 import com.jessie.pojo.Dept;
+import com.jessie.pojo.DeptLog;
 import com.jessie.pojo.Result;
+import com.jessie.service.DeptLogService;
 import com.jessie.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     private EmpMapper empMapper;
+
+    @Autowired
+    private DeptLogService deptLogService;
 
     /**
      * 部门列表查询
@@ -39,8 +44,17 @@ public class DeptServiceImpl implements DeptService {
     // 如果想指定异常类型，可以定义rollbackFor属性
     @Transactional(rollbackFor = Exception.class) // 所有异常都会进行回滚
     public void deleteDeptByID(Integer id){
-        deptMapper.deleteDeptByID(id); // 删除部门
-        empMapper.deleteByDeptId(id); // 删除部门下的员工
+        try {
+            deptMapper.deleteDeptByID(id); // 删除部门
+            int i = 1/0;
+            empMapper.deleteByDeptId(id); // 删除部门下的员工
+        } finally {
+            // 无论删除成功与否，都要记录操作日志
+            DeptLog deptLog = new DeptLog();
+            deptLog.setCreateTime(LocalDateTime.now());
+            deptLog.setDescription("执行了解散部门的操作，此次解散的是" + id + "部门");
+            deptLogService.insert(deptLog);
+        }
     }
 
     /**
