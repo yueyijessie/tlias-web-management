@@ -1,11 +1,13 @@
 package com.jessie.service.impl;
 
 import com.jessie.mapper.DeptMapper;
+import com.jessie.mapper.EmpMapper;
 import com.jessie.pojo.Dept;
 import com.jessie.pojo.Result;
 import com.jessie.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +17,9 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     private DeptMapper deptMapper;
+
+    @Autowired
+    private EmpMapper empMapper;
 
     /**
      * 部门列表查询
@@ -29,8 +34,10 @@ public class DeptServiceImpl implements DeptService {
      * 根据id删除部门
      * @return
      */
+    @Transactional // 交给spring进行事务管理，执行前开启事务，执行后提交事务，异常后回滚事务
     public void deleteDeptByID(Integer id){
-        deptMapper.deleteDeptByID(id);
+        deptMapper.deleteDeptByID(id); // 删除部门
+        empMapper.deleteByDeptId(id); // 删除部门下的员工
     }
 
     /**
@@ -61,4 +68,5 @@ public class DeptServiceImpl implements DeptService {
         dept.setUpdateTime(LocalDateTime.now());
         deptMapper.UpdateDept(dept);
     }
+
 }

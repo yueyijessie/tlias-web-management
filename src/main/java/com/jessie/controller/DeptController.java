@@ -39,7 +39,7 @@ public class DeptController {
     @DeleteMapping("/{id}")
     public Result deleteDeptByID(@PathVariable Integer id){
         log.info("删除数据,{}", id);
-        deptService.deleteDeptByID(id);
+        deptService.deleteDeptByID(id); // 根据部门id删除部门，删除相关联的员工
         return Result.success();
     }
 

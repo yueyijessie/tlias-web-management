@@ -1,6 +1,7 @@
 package com.jessie.mapper;
 
 import com.jessie.pojo.Emp;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,6 +33,9 @@ public interface EmpMapper {
 //
 //    @Select("select * from emp limit #{start}, #{pageSize}")
 //    List<Emp> getEmps(Integer start, Integer pageSize);
+
+    @Delete("delete from emp where dept_id = #{deptId}")
+    void deleteByDeptId(Integer deptId);
 
 
 
