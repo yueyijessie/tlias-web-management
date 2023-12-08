@@ -35,7 +35,7 @@ public class DeptServiceImpl implements DeptService {
      * @return
      */
     // 交给spring进行事务管理，执行前开启事务，执行后提交事务，异常后回滚事务
-    // 但只有运行时异常才会被回滚，并不是所有异常
+    // 默认情况下，只有运行时异常才会被回滚，并不是所有异常
     // 如果想指定异常类型，可以定义rollbackFor属性
     @Transactional(rollbackFor = Exception.class) // 所有异常都会进行回滚
     public void deleteDeptByID(Integer id){
