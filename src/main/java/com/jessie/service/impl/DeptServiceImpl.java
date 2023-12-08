@@ -34,7 +34,10 @@ public class DeptServiceImpl implements DeptService {
      * 根据id删除部门
      * @return
      */
-    @Transactional // 交给spring进行事务管理，执行前开启事务，执行后提交事务，异常后回滚事务
+    // 交给spring进行事务管理，执行前开启事务，执行后提交事务，异常后回滚事务
+    // 但只有运行时异常才会被回滚，并不是所有异常
+    // 如果想指定异常类型，可以定义rollbackFor属性
+    @Transactional(rollbackFor = Exception.class) // 所有异常都会进行回滚
     public void deleteDeptByID(Integer id){
         deptMapper.deleteDeptByID(id); // 删除部门
         empMapper.deleteByDeptId(id); // 删除部门下的员工
