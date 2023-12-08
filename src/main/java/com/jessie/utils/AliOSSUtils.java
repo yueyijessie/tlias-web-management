@@ -21,6 +21,7 @@ import java.util.UUID;
 @Component
 public class AliOSSUtils {
 
+    // 将值从application.properties文件拿出来
     @Value("${aliyun.oss.endpoint}")
     private String endpoint;
 
