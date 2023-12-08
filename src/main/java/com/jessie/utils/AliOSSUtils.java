@@ -8,6 +8,7 @@ import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,17 +22,24 @@ import java.util.UUID;
 @Component
 public class AliOSSUtils {
 
-    // 将值从application.properties文件拿出来
-    @Value("${aliyun.oss.endpoint}")
-    private String endpoint;
+    // 将值从application.properties文件拿出来（比较繁琐，用configurationProperties注解自动注入）
+    // @Value("${aliyun.oss.endpoint}")
+    // private String endpoint;
 
-    @Value("${aliyun.oss.bucketName}")
-    private String bucketName;
+    // @Value("${aliyun.oss.bucketName}")
+    // private String bucketName;
+
+    @Autowired
+    private AliOSSProperties aliOSSProperties;  // 直接绑定AliOSSProperties bean对象
 
     /**
      * 实现上传图片到OSS
      */
     public String upload(MultipartFile file) throws Exception {
+        // 获取阿里云参数
+        String endpoint = aliOSSProperties.getEndpoint();
+        String bucketName = aliOSSProperties.getBucketName();
+
         // 获取上传的文件的输入流
         InputStream inputStream = file.getInputStream();
 
