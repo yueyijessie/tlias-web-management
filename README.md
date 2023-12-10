@@ -1,8 +1,13 @@
 # tlias-web-management
 springboot+mybatis案例（增删改查+登录认证校验+事务管理+AOP）
 
-> 登录认证校验
+> 阿里OSS文件上传
+- pom文件引入OSS依赖
+- 引入OSS上传文件工具类[AliOSSUtils](src/main/java/com/jessie/utils/AliOSSUtils.java)
+- 配置OSS参数[AliOSSProperties](src/main/java/com/jessie/utils/AliOSSProperties.java)
+- 修改UploadController代码，上传图片
 
+> 登录认证校验
 - 会话技术
     - Cookie（客户端）和Session（服务端），不能跨域
     - JWT令牌，支持PC和移动端，集群服务器环境可使用，无需存储在服务器
