@@ -1,5 +1,6 @@
 package com.jessie.controller;
 
+import com.jessie.anno.Log;
 import com.jessie.pojo.Dept;
 import com.jessie.pojo.Result;
 import com.jessie.service.DeptService;
@@ -36,6 +37,7 @@ public class DeptController {
         return Result.success(deptList);
     }
 
+    @Log
     @DeleteMapping("/{id}")
     public Result deleteDeptByID(@PathVariable Integer id){
         log.info("删除数据,{}", id);
@@ -43,6 +45,7 @@ public class DeptController {
         return Result.success();
     }
 
+    @Log
     @PostMapping
     public Result insertDept(@RequestBody Dept dept){
         log.info("新增部门, {}", dept);
@@ -57,6 +60,7 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    @Log
     @PutMapping
     public Result updateDept(@RequestBody Dept dept){
         log.info("修改部门,{},{}", dept.getId(), dept.getName());

@@ -1,5 +1,6 @@
 package com.jessie.controller;
 
+import com.jessie.anno.Log;
 import com.jessie.pojo.Emp;
 import com.jessie.pojo.PageBean;
 import com.jessie.pojo.Result;
@@ -31,12 +32,14 @@ public class EmpController {
     }
 
 
+    @Log
     @DeleteMapping("/{ids}")
     public Result deleteEmps(@PathVariable List<Integer> ids){
         empService.deleteEmps(ids);
         return Result.success();
     }
 
+    @Log
     @PostMapping
     public Result insertEmp(@RequestBody Emp emp){
         empService.insertEmp(emp);
@@ -49,6 +52,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @Log
     @PutMapping
     public Result updateEmp(@RequestBody Emp emp){
         log.info("修改员工,{}", emp);
